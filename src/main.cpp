@@ -36,7 +36,7 @@ public:
 Thread mainThread("main");           // single thread arduino
 MqttSerial mqtt(mainThread, Serial); // serial mqtt output powered by mainThread
 void serialEvent() { mqtt.onRxd(&mqtt); }; // capture serial data incoming
-TimerSource tick(mainThread, 10, true);  // create a timer event every 1 sec
+TimerSource tick(mainThread, 1000, true);  // create a timer event every 1 sec
 ValueFlow<int> x;                        // source of integers
 Sink<int> y(3);                           // sink for integers , buffer for 3 of them 
 LambdaSource<uint64_t> systemTime([]() { return millis(); });
